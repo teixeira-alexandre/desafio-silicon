@@ -9,8 +9,9 @@ Se você for aprovad(a) nesta etapa, será convidado para uma entrevista final.
 ### Desafio Técnico
   Nós trabalhamos com meios de pagamento e nada melhor do que um bom sistema para gestão de contas:
   - Pré-requisitos:
-    - Banco de dados Firebase ou Mock a escolha
+    - Banco de dados SQL Server ou Oracle a escolha
     - Angular, React ou framework de FrontEnd de sua escolha.
+    - Linguagem do Backend - .Net Core
     ```
     * Desenvolver os recursos que realizam operações bancárias com a entidade conta a seguir:
     ```
