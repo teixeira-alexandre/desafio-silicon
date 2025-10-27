@@ -1,0 +1,32 @@
+-- Script inicial MySQL
+
+CREATE TABLE IF NOT EXISTS Pessoas (
+  IdPessoa INT AUTO_INCREMENT PRIMARY KEY,
+  Nome VARCHAR(120) NOT NULL,
+  Cpf VARCHAR(14) NOT NULL,
+  DataNascimento DATE NOT NULL
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS Contas (
+  IdConta INT AUTO_INCREMENT PRIMARY KEY,
+  IdPessoa INT NOT NULL,
+  Saldo DECIMAL(18,2) NOT NULL DEFAULT 0,
+  LimiteSaqueDiario DECIMAL(18,2) NOT NULL DEFAULT 0,
+  FlagAtivo BOOLEAN NOT NULL DEFAULT TRUE,
+  TipoConta INT NOT NULL,
+  DataCriacao DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT fk_conta_pessoa FOREIGN KEY (IdPessoa) REFERENCES Pessoas(IdPessoa)
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS Transacoes (
+  IdTransacao INT AUTO_INCREMENT PRIMARY KEY,
+  IdConta INT NOT NULL,
+  Valor DECIMAL(18,2) NOT NULL,
+  DataTransacao DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT fk_transacao_conta FOREIGN KEY (IdConta) REFERENCES Contas(IdConta)
+) ENGINE=InnoDB;
+
+INSERT INTO Pessoas (Nome, Cpf, DataNascimento) VALUES ('João da Silva', '123.456.789-00', '1990-01-01');
+INSERT INTO Pessoas (Nome, Cpf, DataNascimento) VALUES ('Maria Oliveira', '987.654.321-00', '1985-05-15');
+INSERT INTO Contas (IdPessoa, Saldo, LimiteSaqueDiario, FlagAtivo, TipoConta) VALUES (1, 500.00, 1000.00, TRUE, 1);
+INSERT INTO Transacoes (IdConta, Valor) VALUES (1, 500.00);
